@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <!-- 欢迎体验，本DEMO有上传文件和ajax get post请求测试 -->
+  <form method="post" enctype="multipart/form-data" action="http://192.168.244.1:9000/uploads" name="323">
+    <input type="file" name="file" multiple="multiple" />
+    <input type="submit" name="上传" />
+  </form>
+  <script>
+    $.get('/ajax', { a: 1 }, (success) => {
+      console.log(success);
+    });
+    $.post('/ajax', {
+      a: 1, arr: [1, 2], json: `{
+          "sites": [
+            { "name": "菜鸟教程", "url": "www.runoob.com" },
+            { "name": "google", "url": "www.google.com" },
+            { "name": "微博", "url": "www.weibo.com" }
+          ]
+        }`}, (success) => {
+      success.data.json = JSON.parse(success.data.json)
+      console.log(success);
+    });
+  </script>
+</body>
+
+</html>
